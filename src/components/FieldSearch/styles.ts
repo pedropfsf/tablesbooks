@@ -3,18 +3,17 @@ import styled from "styled-components";
 import colors from "@/styles/colors";
 
 export const Container = styled.div`
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: ${colors.black + "10"};
+  background-color: ${colors.black + "10"}; 
   
-  border: ${colors.black + "30"} solid 1px;
-  
-  width: 50%;
-  
+  margin-right: 64px;
   padding: 8px;
   
+  border: ${colors.black + "30"} solid 1px;
   border-radius: 8px;
   
   &:hover {

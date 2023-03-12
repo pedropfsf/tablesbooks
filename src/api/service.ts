@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://openlibrary.org",
-  timeout: 1000,
+  baseURL: "https://www.googleapis.com/books/v1",
 });
 
 export default api;

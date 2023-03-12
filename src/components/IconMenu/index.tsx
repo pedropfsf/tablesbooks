@@ -15,6 +15,7 @@ export default function IconMenu({ Icon, nameRoute, ...props }: IconMenuProps) {
 
   return (
     <Icon
+      style={{ cursor: "pointer "}}
       color={router.pathname === nameRoute ? colors.red : colors.black}
       size={32}
       {...props}

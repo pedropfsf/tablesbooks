@@ -1,15 +1,16 @@
 import Head from "next/head";
+
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
+
+import Welcome from "@/components/Welcome";
 
 export default function Home() {
   return (
-    <div>
+    <ContainerPageDefault>
       <Head>
         <title>tablebooks</title>
       </Head>
-      <ContainerPageDefault>
-        Main
-      </ContainerPageDefault>
-    </div>
+      <Welcome/>
+    </ContainerPageDefault>
   )
 }

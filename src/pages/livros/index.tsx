@@ -3,14 +3,11 @@ import Head from "next/head";
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 
 import BooksApi from "@/api/BooksApi";
-// import { useEffect } from "react";
+
+import Words from "@/utils/Words";
 
 export default function Books({ data }: any) {
   console.log(data);
-  // useEffect(() => {
-  //   BooksApi.getAllBooks()
-  //     .then(data => console.log(data));
-  // }, [])
 
   return (
     <div>
@@ -25,7 +22,9 @@ export default function Books({ data }: any) {
 };
 
 export async function getStaticProps() {
-  const data = await BooksApi.getAllBooks();
+  const data = await BooksApi.getAllBooks({
+    q: Words.generateRandom(),
+  });
 
   return {
     props: {

@@ -1,13 +1,17 @@
 import api from "./service"
 
+import Request from "@/utils/Request";
+
+type getAllBooksProps = {
+  q?: string;
+}
+
 class BooksApi {
-  static async getAllBooks() {
+  static async getAllBooks({ ...props }: getAllBooksProps = {}) {
     try {
-      const response = await api.get("/search.json?q=python", {
-        headers: {
-          "Origin": "https://www.example.com"
-        }
-      });
+      const querys = Request.generateQuerysDynamic(props);
+      
+      const response = await api.get(`/volumes?key=AIzaSyD5kDqa0PJlZRSd-LSXz2dRFsVXnIhO3_E${querys}`);
 
       return {
         message: "",
