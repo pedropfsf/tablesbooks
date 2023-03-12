@@ -8,8 +8,11 @@ import { Container } from "./styles";
 
 import IconMenu from "../IconMenu";
 
+import IconTheme from "../IconTheme";
+
 export default function Menu() {
   const router = useRouter();
+  
 
   const nextPage = useCallback((route?: string) => {
     return () => {
@@ -29,6 +32,8 @@ export default function Menu() {
         nameRoute="/livros"
         onClick={nextPage("livros")}
       />
+
+      <IconTheme/>
     </Container>
   )
 }

@@ -4,7 +4,11 @@ import { ContainerCore } from "@/elements/ContainerCore";
 
 import GlobalStyles from '@/styles/GlobalStyles';
 
-import Header from "@//components/Header";
+import dynamic from 'next/dynamic';
+
+const Header = dynamic(() => import("@/components/Header"), {
+  ssr: false,
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
