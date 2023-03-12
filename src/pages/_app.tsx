@@ -1,6 +1,17 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+
+import { ContainerCore } from "@/elements/ContainerCore";
+
+import GlobalStyles from '@/styles/GlobalStyles';
+
+import Header from "@//components/Header";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ContainerCore>
+      <GlobalStyles/>
+      <Header/>
+      <Component {...pageProps} />
+    </ContainerCore>
+  )
 }
