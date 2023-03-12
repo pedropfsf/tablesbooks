@@ -19,10 +19,14 @@ export const Container = styled.div`
   &:hover {
     background-color: ${colors.black + "30"};
   }
+
+  @media screen and (max-width: 320px) {
+    margin-right: 24px;
+  }
 `;
 
 export const Field = styled.input`
-  flex: 1;
+  width: 100%;
 
   border: none;
   outline: none;

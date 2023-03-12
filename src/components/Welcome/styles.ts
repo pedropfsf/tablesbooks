@@ -16,8 +16,12 @@ export const Illustration = styled.img.attrs({
   alt: "Ilustração de uma pessoa passando página de um livro gigante",
 })`
   width: 400px;
-
+  
   object-fit: cover;
+  
+  @media screen and (max-width: 500px) {
+    width: calc(100% - 24px);
+  }
 `;
 
 export const Title = styled.h3`

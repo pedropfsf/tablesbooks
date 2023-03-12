@@ -6,4 +6,8 @@ export const Container = styled.nav`
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+
+  @media screen and (max-width: 426px) {
+    gap: 8px;
+  }
 `;
