@@ -24,8 +24,12 @@ export const Illustration = styled.img.attrs({
   }
 `;
 
-export const Title = styled.h3`
-  color: ${colors.black};
+export type TitleProps = {
+  theme?: "dark" | "light";
+}
+
+export const Title = styled.h3<TitleProps>`
+  color: ${props => props.theme === "light" ? colors.black : colors.white};
 
   text-align: center;
 `;

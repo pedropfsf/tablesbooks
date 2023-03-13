@@ -14,20 +14,18 @@ type IconMenuProps = StyledIconProps & {
 export default function IconMenu({ Icon, nameRoute, theme, ...props }: IconMenuProps) {
   const router = useRouter();
 
-  // const setTheme = useCallback(() => {
-  //   if (router.pathname === nameRoute) {
-  //     return colors.red;
-  //   } else if (theme) {
-  //     return theme === "light" ? colors.black : colors.white;
-  //   } else {
-  //     return colors.black;
-  //   }
-  // }, []);
+  const setTheme = useCallback(() => {
+    if (router.pathname === nameRoute) {
+      return colors.red;
+    } else {
+      return theme === "light" ? colors.black : colors.white;
+    }
+  }, [theme, colors]);
 
   return (
     <Icon
       style={{ cursor: "pointer "}}
-      color={router.pathname === nameRoute ? colors.red : colors.black}
+      color={setTheme()}
       size={32}
       {...props}
     />

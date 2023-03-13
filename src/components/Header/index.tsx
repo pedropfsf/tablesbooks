@@ -8,9 +8,11 @@ import useTheme from "@/hooks/useTheme";
 export default function Header() {
   const { theme } = useTheme();
   
+  console.log(theme);
+
   return (
     <Container theme={theme}>
-      <FieldSearch/>
+      <FieldSearch theme={theme}/>
       <Menu/>
     </Container>
   )

@@ -6,7 +6,10 @@ import BooksApi from "@/api/BooksApi";
 
 import Words from "@/utils/Words";
 
+import useTheme from "@/hooks/useTheme";
+
 export default function Books({ data }: any) {
+  const { theme } = useTheme();
   console.log(data);
 
   return (
@@ -14,7 +17,7 @@ export default function Books({ data }: any) {
       <Head>
         <title>tablebooks - Livros</title>
       </Head>
-      <ContainerPageDefault>
+      <ContainerPageDefault theme={theme}>
         Livros
       </ContainerPageDefault>
     </div>

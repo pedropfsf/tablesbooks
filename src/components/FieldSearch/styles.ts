@@ -2,22 +2,26 @@ import styled from "styled-components";
 
 import colors from "@/styles/colors";
 
-export const Container = styled.div`
+type ColorComponents = {
+  color?: string;
+}
+
+export const Container = styled.div<ColorComponents>`
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: ${colors.black + "10"}; 
+  background-color: ${props => props.color + "10"}; 
   
   margin-right: 64px;
   padding: 8px;
   
-  border: ${colors.black + "30"} solid 1px;
+  border: ${props => props.color + "30"} solid 1px;
   border-radius: 8px;
   
   &:hover {
-    background-color: ${colors.black + "30"};
+    background-color: ${props => props.color + "30"};
   }
 
   @media screen and (max-width: 320px) {
@@ -25,7 +29,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Field = styled.input`
+export const Field = styled.input<ColorComponents>`
   width: 100%;
 
   border: none;
@@ -36,6 +40,6 @@ export const Field = styled.input`
   font-size: 16px;
 
   &::placeholder {
-    color: ${colors.black + "50"}
+    color: ${props => props.color + "50"}
   }
 `;

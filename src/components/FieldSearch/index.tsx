@@ -6,12 +6,15 @@ import { Container, Field } from "./styles";
 
 import colors from "@/styles/colors";
 
-type FieldSearchProps = InputHTMLAttributes<HTMLInputElement> & {};
+type FieldSearchProps = InputHTMLAttributes<HTMLInputElement> & {
+  theme?: "light" | "dark"
+};
 
-export default function FieldSearch({ ...props }: FieldSearchProps) {
+export default function FieldSearch({ theme, ...props }: FieldSearchProps) {
   return (
     <Container>
       <Field
+        color={theme === "light" ? colors.black : colors.white}
         placeholder="Pesquise livros..."
         {...props}
       />
