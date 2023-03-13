@@ -4,8 +4,6 @@ import { BookAlt } from "@styled-icons/boxicons-regular/BookAlt";
 
 import colors from "@/styles/colors";
 
-import IconBookSvg from "../../../public/images/svgs/icon-book.svg"
-
 import { 
   Container, 
   ImageBook,

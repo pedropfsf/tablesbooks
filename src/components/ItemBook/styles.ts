@@ -27,8 +27,6 @@ function applyTheme(directionColor: "black" | "white" = "black") {
 }
 
 export const Container = styled.div<ThemeDarkProps>`
-  flex: 1;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,12 +38,6 @@ export const Container = styled.div<ThemeDarkProps>`
 
   border: ${applyTheme()} dashed 2px;
   border-radius: 8px;
-
-  margin: 8px;
-
-  &:hover {
-    transform: scale(1.10);
-  }
 `;
 
 export const ImageBook = styled.img`

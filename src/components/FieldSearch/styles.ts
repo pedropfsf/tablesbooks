@@ -24,8 +24,8 @@ export const Container = styled.div<ColorComponents>`
     background-color: ${props => props.color + "30"};
   }
 
-  @media screen and (max-width: 320px) {
-    margin-right: 24px;
+  @media screen and (max-width: 426px) {
+    margin-right: 16px;
   }
 `;
 
