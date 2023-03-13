@@ -36,6 +36,7 @@ export const Field = styled.input<ColorComponents>`
   outline: none;
 
   background-color: transparent;
+  color: ${props => props.color};
 
   font-size: 16px;
 

@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <ContainerPageDefault theme={theme}>
       <Head>
-        <title>tablebooks</title>
+        <title>Tablebooks</title>
       </Head>
       <Welcome theme={theme}/>
     </ContainerPageDefault>

@@ -13,14 +13,11 @@ export default function Books({ data }: any) {
   console.log(data);
 
   return (
-    <div>
+    <ContainerPageDefault theme={theme}>
       <Head>
-        <title>tablebooks - Livros</title>
+        <title>Tablebooks - Livros</title>
       </Head>
-      <ContainerPageDefault theme={theme}>
-        Livros
-      </ContainerPageDefault>
-    </div>
+    </ContainerPageDefault>
   )
 };
 
