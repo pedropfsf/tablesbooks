@@ -6,51 +6,60 @@ type ThemeDarkProps = {
   theme?: "light" | "dark";
 }
 
-function applyTheme(props: any) {
-  if (props.theme === "light") {
-    return colors.black;
+function applyTheme(directionColor: "black" | "white" = "black") {
+  if (directionColor === "black") {
+    return (props: any) => {
+      if (props.theme === "light") {
+        return colors.black;
+      } else {
+        return colors.white;
+      }
+    }
   } else {
-    return colors.white;
+    return (props: any) => {
+      if (props.theme === "light") {
+        return colors.white;
+      } else {
+        return colors.black;
+      }
+    }
   }
 }
 
 export const Container = styled.div<ThemeDarkProps>`
-  width: 25%;
+  flex: 1;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
 
-  padding: 4px;
+  padding: 16px;
 
-  border: ${applyTheme} dashed 2px;
+  background-color: ${applyTheme("white")};
+
+  border: ${applyTheme()} dashed 2px;
   border-radius: 8px;
 
   margin: 8px;
+
+  &:hover {
+    transform: scale(1.10);
+  }
 `;
 
-export const ImageBook = styled.img``;
+export const ImageBook = styled.img`
+  width: 200px;
+`;
 
 export const Title = styled.h2<ThemeDarkProps>`
-  color: ${applyTheme};
+  color: ${applyTheme()};
   
   text-align: center;
-
-  margin: 0 16px;
 `;
 
 export const Description = styled.p<ThemeDarkProps>`
-  color: ${applyTheme};
+  color: ${applyTheme()};
   
-  text-align: center;
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-bottom: 16px;
+  text-align: start;
 `;
-
-// export const CategoryTag = styled.span`
-//   padding: 8px;
-
-  
-// `;

@@ -18,10 +18,12 @@ export default function Books({ pageProps: { response }}: any) {
       
       const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
 
+      console.log(description);
+
       return {
         imageSrc, 
         title,
-        description: `${Words.setLimitString(description)}...`, 
+        description: Words.setLimitString(description), 
       }
     })
   }, [response.data.items]);

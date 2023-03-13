@@ -18,12 +18,9 @@ type ItemBookProps = {
   imageSrc?: string; 
   title: string; 
   description: string; 
-  category?: string; 
-  publishedDate?: string; 
-  authors?: string;
 }
 
-export default function ItemBook({ theme, imageSrc, title, description, category, publishedDate, authors}: ItemBookProps) {
+export default function ItemBook({ theme, imageSrc, title, description }: ItemBookProps) {
   const imageItemBook = useMemo(() => {
     if (imageSrc) {
       return (
@@ -50,10 +47,14 @@ export default function ItemBook({ theme, imageSrc, title, description, category
   ])
 
   return (
-    <Container>
+    <Container theme={theme}>
       {imageItemBook}
-      <Title>{title}</Title>
-      <Description>{description}</Description>
+      <Title theme={theme}>
+        {title}
+      </Title>
+      <Description theme={theme}>
+        {description}
+      </Description>
     </Container>
   )
 }

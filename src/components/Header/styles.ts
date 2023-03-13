@@ -29,4 +29,9 @@ export const Container = styled.header<ContainerProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 10;
 `;
