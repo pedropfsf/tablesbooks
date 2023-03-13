@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Illustration = styled.img.attrs({
-  src: "/images/illustration-welcome.svg",
+  src: "/images/svgs/illustration-welcome.svg",
   alt: "Ilustração de uma pessoa passando página de um livro gigante",
 })`
   width: 400px;

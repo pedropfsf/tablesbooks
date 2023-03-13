@@ -33,6 +33,17 @@ class Words {
 
     return listWords[indexRandom];
   }
+  static setLimitString(value?: string) {
+    if (value === undefined) {
+      return "";
+    }
+
+    const listChar = value.split("");
+    const listCharWithLimit = listChar.slice(0, 24);
+    const newValue = listCharWithLimit.join("");
+
+    return `${newValue}...`;
+  }
 };
 
 export default Words;
