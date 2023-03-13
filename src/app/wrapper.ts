@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 
 import themeSlice from "@/features/theme/themeSlice";
+import searchBooksSlice from "@/features/searchBooks/searchBooksSlice";
 
 const wrapper = configureStore({
   reducer: {
     theme: themeSlice,
+    searchBooks: searchBooksSlice,
   }
 });
 

@@ -16,9 +16,10 @@ type ItemBookProps = {
   imageSrc?: string; 
   title: string; 
   description: string; 
+  keyElement?: number;
 }
 
-export default function ItemBook({ theme, imageSrc, title, description }: ItemBookProps) {
+export default function ItemBook({ theme, imageSrc, title, description, keyElement }: ItemBookProps) {
   const imageItemBook = useMemo(() => {
     if (imageSrc) {
       return (
@@ -45,7 +46,7 @@ export default function ItemBook({ theme, imageSrc, title, description }: ItemBo
   ])
 
   return (
-    <Container theme={theme}>
+    <Container theme={theme} key={keyElement}>
       {imageItemBook}
       <Title theme={theme}>
         {title}

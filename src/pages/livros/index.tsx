@@ -10,20 +10,17 @@ import useTheme from "@/features/theme/useTheme";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  console.log(response.data.items);
-
   const dataFormatted = useMemo(() => {
-    return response.data.items.map((item: any) => {
+    return response.data.items.map((item: any, index: number) => {
       const { title, description } = item.volumeInfo;
       
       const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
-
-      console.log(description);
-
+      
       return {
         imageSrc, 
         title,
-        description: Words.setLimitString(description), 
+        description: Words.setLimitString(description),
+        keyElement: index,
       }
     })
   }, [response.data.items]);
@@ -35,8 +32,11 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          dataFormatted.map((item: any) => (
-            <ItemBook theme={theme} {...item}/>
+          dataFormatted.map((item: any, index: any) => (
+            <ItemBook 
+              theme={theme} 
+              {...item}
+            />
           ))
         }
       </ContainerItemBooks>

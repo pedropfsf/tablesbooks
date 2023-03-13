@@ -44,7 +44,7 @@ export const ImageBook = styled.img`
   width: 200px;
 `;
 
-export const Title = styled.h2<ThemeDarkProps>`
+export const Title = styled.h3<ThemeDarkProps>`
   color: ${applyTheme()};
   
   text-align: center;

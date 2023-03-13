@@ -36,7 +36,6 @@ class Words {
   static setLimitString(value?: string, limit: number = 180) {
     
     if (typeof value === "undefined") {
-      console.log(value);
       return "";
     }
 

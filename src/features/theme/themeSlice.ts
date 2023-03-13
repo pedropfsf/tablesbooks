@@ -3,11 +3,11 @@ import type { RootState } from "@/app/wrapper";
 
 import Cookies from "cookies-js"; 
 
-type InitialState = {
+type InitialStateTheme = {
   value?: "light" | "dark";
 }
 
-const initialState: InitialState = {
+const initialState: InitialStateTheme = {
   value: "light",
 };
 
