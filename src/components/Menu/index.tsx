@@ -10,9 +10,11 @@ import IconMenu from "../IconMenu";
 
 import IconTheme from "../IconTheme";
 
+import useTheme from "@/hooks/useTheme";
+
 export default function Menu() {
   const router = useRouter();
-  
+  const { theme } = useTheme();
 
   const nextPage = useCallback((route?: string) => {
     return () => {
@@ -24,11 +26,13 @@ export default function Menu() {
     <Container>
       <IconMenu
         Icon={Home}
+        theme={theme}
         nameRoute="/"
         onClick={nextPage()}
       />
       <IconMenu
         Icon={BookAlt}
+        theme={theme}
         nameRoute="/livros"
         onClick={nextPage("livros")}
       />

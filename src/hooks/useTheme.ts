@@ -1,29 +1,29 @@
 import { useCallback, useState, useEffect } from "react";
 
-type ThemeData = "light" | "dark" | null;
+import colors from "@/styles/colors";
+
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { 
+  selectTheme, 
+  applyThemeDark, 
+  applyThemeLight,  
+  saveTheme
+} from "@/features/theme/themeSlice";
 
 export default function useTheme() {
-  const [ theme, setTheme ] = useState<ThemeData>("light");
+  const dispatch = useAppDispatch();
+  const theme = useAppSelector(selectTheme);
 
-  const setStorageThemeLight = useCallback(() => {
-    setTheme("light");
-  }, []);
-  
-  const setStorageThemeDark = useCallback(() => {
-    setTheme("dark");
-  }, []);
-  
-  useEffect(() => {
-    setTheme(localStorage.getItem("@theme") as ThemeData);
-  }, []);
+  const handleSetThemeDark = useCallback(() => dispatch(applyThemeDark()), []);
+  const handleSetThemeLight = useCallback(() => dispatch(applyThemeLight()), []);
 
   useEffect(() => {
-    localStorage.setItem("@theme", theme ?? "light");
+    dispatch(saveTheme);
   }, [theme]);
 
   return {
-    setStorageThemeLight,
-    setStorageThemeDark,
-    theme,
+    handleSetThemeDark,
+    handleSetThemeLight,
+    theme: theme,
   }
 }

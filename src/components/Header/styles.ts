@@ -1,14 +1,30 @@
 import styled from "styled-components";
 import colors from "@/styles/colors";
 
-export const Container = styled.header`
+type ContainerProps = {
+  theme: "light" | "dark";
+};
+
+export const Container = styled.header<ContainerProps>`
   width: 100%;
 
   padding: 16px;
 
-  background-color: ${colors.white};
+  background-color: ${props => 
+    props.theme === "light" 
+    ? 
+    colors.white 
+    : 
+    colors.black
+  };
   
-  border-bottom: ${colors.black} dashed 2px;
+  border-bottom: ${props => 
+    props.theme === "light" 
+    ? 
+    colors.black 
+    : 
+    colors.white
+  } dashed 2px;
 
   display: flex;
   justify-content: space-between;
