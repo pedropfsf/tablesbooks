@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { RootState } from "@/app/store";
+import type { RootState } from "@/app/wrapper";
 
 type InitialState = {
   value?: "light" | "dark";
