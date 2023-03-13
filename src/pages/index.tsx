@@ -4,7 +4,7 @@ import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 
 import Welcome from "@/components/Welcome";
 
-import useTheme from "@/hooks/useTheme";
+import useTheme from "@/features/theme/useTheme";
 
 export default function Home() {
   const {theme} = useTheme();

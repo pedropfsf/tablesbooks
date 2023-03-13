@@ -1,13 +1,11 @@
-import { useCallback, useState, useEffect } from "react";
-
-import colors from "@/styles/colors";
+import { useCallback, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { 
   selectTheme, 
   applyThemeDark, 
   applyThemeLight,  
-  saveTheme
+  loadTheme,
 } from "@/features/theme/themeSlice";
 
 export default function useTheme() {
@@ -16,10 +14,10 @@ export default function useTheme() {
 
   const handleSetThemeDark = useCallback(() => dispatch(applyThemeDark()), []);
   const handleSetThemeLight = useCallback(() => dispatch(applyThemeLight()), []);
-
+  
   useEffect(() => {
-    dispatch(saveTheme);
-  }, [theme]);
+    dispatch(loadTheme());
+  }, []);
 
   return {
     handleSetThemeDark,

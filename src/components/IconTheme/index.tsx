@@ -3,7 +3,7 @@ import { Sun } from "@styled-icons/boxicons-solid/Sun";
 
 import colors from "@/styles/colors";
 
-import useTheme from "@/hooks/useTheme";
+import useTheme from "@/features/theme/useTheme";
 
 export default function IconTheme() {
   const { 

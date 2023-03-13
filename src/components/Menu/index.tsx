@@ -10,7 +10,7 @@ import IconMenu from "../IconMenu";
 
 import IconTheme from "../IconTheme";
 
-import useTheme from "@/hooks/useTheme";
+import useTheme from "@/features/theme/useTheme";
 
 export default function Menu() {
   const router = useRouter();

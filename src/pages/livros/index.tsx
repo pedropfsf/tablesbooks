@@ -6,11 +6,13 @@ import BooksApi from "@/api/BooksApi";
 
 import Words from "@/utils/Words";
 
-import useTheme from "@/hooks/useTheme";
+import useTheme from "@/features/theme/useTheme";
 
 export default function Books({ data }: any) {
   const { theme } = useTheme();
-  console.log(data);
+  // console.log(data);
+
+  // console.log(theme);
 
   return (
     <ContainerPageDefault theme={theme}>

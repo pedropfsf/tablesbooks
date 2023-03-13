@@ -10,7 +10,7 @@ const Header = dynamic(() => import("@/components/Header"), {
   ssr: false,
 });
 
-function App({ Component, ...pageProps }: AppProps) {
+export default function App({ Component, ...pageProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
 
   return (
@@ -23,5 +23,3 @@ function App({ Component, ...pageProps }: AppProps) {
     </Provider>
   )
 }
-
-export default wrapper.withRedux(App);
