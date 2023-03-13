@@ -20,7 +20,12 @@ export default function IconMenu({ Icon, nameRoute, theme, ...props }: IconMenuP
     } else {
       return theme === "light" ? colors.black : colors.white;
     }
-  }, [theme, colors]);
+  }, [
+    router, 
+    nameRoute, 
+    theme, 
+    colors
+  ]);
 
   return (
     <Icon
