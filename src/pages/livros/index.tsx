@@ -8,24 +8,12 @@ import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
 import Words from "@/utils/Words";
 import useTheme from "@/features/theme/useTheme";
+import useFormatItemBook from "@/hooks/useFormatItemBook";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
   
-  const dataFormatted = useMemo(() => {
-    return response.data.items.map((item: any, index: number) => {
-      const { title, description } = item.volumeInfo;
-      
-      const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
-      
-      return {
-        imageSrc, 
-        title,
-        description: Words.setLimitString(description),
-        keyElement: index,
-      }
-    })
-  }, [response.data.items]);
+  const dataFormatted = useFormatItemBook(response.data);
   
   return (
     <ContainerPageDefault theme={theme}>

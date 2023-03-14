@@ -9,6 +9,7 @@ import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
 import Words from "@/utils/Words";
 import useTheme from "@/features/theme/useTheme";
+import useFormatItemBook from "@/hooks/useFormatItemBook";
 
 import LoadingSpin from "react-loading-spin";
 import colors from "@/styles/colors";
@@ -18,21 +19,7 @@ export default function Books() {
   const { theme } = useTheme();
   const [responseData, setResponseData] = useState<any>({});
   const [loading, setLoading] = useState(false);
-
-  const dataFormatted = useMemo(() => {
-    return responseData?.items?.map((item: any, index: number) => {
-      const { title, description } = item.volumeInfo;
-      
-      const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
-      
-      return {
-        imageSrc, 
-        title,
-        description: Words.setLimitString(description),
-        keyElement: index,
-      }
-    })
-  }, [responseData]);
+  const dataFormatted = useFormatItemBook(responseData);
   
   const fetchBooksPerSearch = useCallback(async () => {
     try {
