@@ -1,6 +1,10 @@
+import * as dotenv from "dotenv";
+
 import api from "./service"
 
 import Request from "@/utils/Request";
+
+dotenv.config();
 
 type getAllBooksProps = {
   q?: string;
@@ -11,7 +15,7 @@ class BooksApi {
     try {
       const querys = Request.generateQuerysDynamic(props);
       
-      const response = await api.get(`/volumes?key=AIzaSyD5kDqa0PJlZRSd-LSXz2dRFsVXnIhO3_E${querys}`);
+      const response = await api.get(`/volumes?key=${process.env.KEY_API_GOOGLE}${querys}`);
 
       return {
         message: "",
