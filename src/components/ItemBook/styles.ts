@@ -29,6 +29,7 @@ function applyTheme(directionColor: "black" | "white" = "black") {
 export const Container = styled.div<ThemeDarkProps>`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   gap: 16px;
 
@@ -60,4 +61,12 @@ export const Description = styled.p<ThemeDarkProps>`
   color: ${applyTheme()};
   
   text-align: start;
+`;
+
+export const Buttons = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;

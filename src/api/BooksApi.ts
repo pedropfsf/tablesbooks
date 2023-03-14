@@ -11,7 +11,13 @@ class BooksApi {
     try {
       const querys = Request.generateQuerysDynamic(props);
       
-      const response = await api.get(`/volumes?key=${process.env.KEY_API_GOOGLE}${querys}`);
+      const queryKeyGoogleApi = Request.applyQuery({
+        key: "key",
+        value: process.env.KEY_API_GOOGLE ?? "",
+        flag: "?",
+      })
+
+      const response = await api.get(`/volumes${queryKeyGoogleApi}${querys}`);
 
       return {
         message: "",
