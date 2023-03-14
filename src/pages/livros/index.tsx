@@ -22,9 +22,10 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          dataFormatted.map((item: any) => (
+          dataFormatted.map((item: any, index: number) => (
             <ItemBook 
               theme={theme} 
+              key={index}
               {...item}
             />
           ))

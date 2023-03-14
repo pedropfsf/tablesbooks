@@ -1,7 +1,7 @@
 import Words from "@/utils/Words";
 
 export default function useFormatItemBook(data: any) {
-  return data?.items?.map((item: any, index: number) => {
+  return data?.items?.map((item: any) => {
     const { title, description } = item.volumeInfo;
     
     const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
@@ -10,7 +10,6 @@ export default function useFormatItemBook(data: any) {
       imageSrc, 
       title,
       description: Words.setLimitString(description),
-      keyElement: index,
     }
   });
 };

@@ -73,9 +73,10 @@ export default function Books() {
       }
       <ContainerItemBooks>
         {
-          dataFormatted?.map((item: any) => (
+          dataFormatted?.map((item: any, index: number) => (
             <ItemBook 
               theme={theme} 
+              key={index}
               {...item}
             />
           ))

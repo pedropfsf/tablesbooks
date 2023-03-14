@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <ContainerPageDefault theme={theme}>
       <Head>
+        <link rel="icon" type="image/png" href="/images/svgs/logo-tablebooks.png"/>
         <title>Tablebooks</title>
       </Head>
       <Welcome theme={theme}/>
