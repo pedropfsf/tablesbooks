@@ -69,6 +69,10 @@ export default function Books() {
             size="100px"
             primaryColor={colors.red}
           />
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         </> 
       }
       <ContainerItemBooks>
