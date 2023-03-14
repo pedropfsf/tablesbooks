@@ -15,6 +15,9 @@ const searchBooksSlice = createSlice({
   reducers: {
     setCurrentSearch: (state, action) => {
       state.currentSearch = action.payload;
+    },
+    fetchBooks: (state) => {
+
     }
   }
 });

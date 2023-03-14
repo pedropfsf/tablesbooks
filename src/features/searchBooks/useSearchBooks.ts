@@ -5,16 +5,19 @@ import { setCurrentSearch } from "@/features/searchBooks/searchBooksSlice";
 
 export default function useSearchBooks() {
   const dispatch = useAppDispatch();
-  const searchBooks = useAppSelector(value => value.searchBooks.currentSearch);
+  const currentSearch = useAppSelector(value => value.searchBooks.currentSearch);
 
   const handleSetCurrentSearch = useCallback((event: any) => {
-    console.log(event);
-
     dispatch(setCurrentSearch(event.target.value))
   }, []);
 
+  const setCurrentSearchState = useCallback((value: string) => {
+    dispatch(setCurrentSearch(value))
+  }, []);
+
   return {
-    searchBooks,
+    currentSearch,
     handleSetCurrentSearch,
+    setCurrentSearchState,
   }
 }

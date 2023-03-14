@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useMemo } from "react";
+import { useRouter } from "next/router";
 
 import ItemBook from "@/components/ItemBook";
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
@@ -10,6 +11,7 @@ import useTheme from "@/features/theme/useTheme";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
+  
   const dataFormatted = useMemo(() => {
     return response.data.items.map((item: any, index: number) => {
       const { title, description } = item.volumeInfo;
@@ -32,7 +34,7 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          dataFormatted.map((item: any, index: any) => (
+          dataFormatted.map((item: any) => (
             <ItemBook 
               theme={theme} 
               {...item}

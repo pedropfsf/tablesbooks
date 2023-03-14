@@ -33,6 +33,7 @@ class Words {
 
     return listWords[indexRandom];
   }
+
   static setLimitString(value?: string, limit: number = 180) {
     
     if (typeof value === "undefined") {
@@ -44,6 +45,14 @@ class Words {
     const newValue = listCharWithLimit.join("");
 
     return `${newValue}...`;
+  }
+
+  static getIsSpace(value: string) {
+    return /^\s*$/.test(value);
+  }
+
+  static removeSpaceStartEnd(value: string) {
+    return value.replace(/^\s+|\s+$/g, "");
   }
 };
 
