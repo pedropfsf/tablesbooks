@@ -6,7 +6,10 @@ type ContainerPageDefaultProps = {
 };
 
 export const ContainerPageDefault = styled.div<ContainerPageDefaultProps>`
-  padding: 24px;
+  padding-top: ${74 + 24}px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
 
   display: flex;
   flex-direction: column;

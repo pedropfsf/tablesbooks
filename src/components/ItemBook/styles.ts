@@ -32,12 +32,18 @@ export const Container = styled.div<ThemeDarkProps>`
   align-items: center;
   gap: 16px;
 
+  width: 280px;
+
   padding: 16px;
 
   background-color: ${applyTheme("white")};
 
   border: ${applyTheme()} dashed 2px;
   border-radius: 8px;
+
+  @media screen and (max-width: 627px) {
+    width: 100%;
+  }
 `;
 
 export const ImageBook = styled.img`

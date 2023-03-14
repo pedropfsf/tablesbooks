@@ -30,8 +30,9 @@ export const Container = styled.header<ContainerProps>`
   justify-content: space-between;
   align-items: center;
 
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
 
   z-index: 10;
 `;
