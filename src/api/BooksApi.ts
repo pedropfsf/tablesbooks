@@ -1,10 +1,6 @@
-import * as dotenv from "dotenv";
-
 import api from "./service"
 
 import Request from "@/utils/Request";
-
-dotenv.config();
 
 type getAllBooksProps = {
   q?: string;
