@@ -24,15 +24,11 @@ export default function Header() {
     }
 
     setLoading(true);
-    
-    const querySearchValue = Request.applyQuery({
-      key: "search_value",
-      value: Words.removeSpaceStartEnd(currentSearch),
-      flag: "?"
-    })
-    
+
+    const search_value = Words.removeSpaceStartEnd(currentSearch);
+
     Timer.applyDelay(() => {
-      router.push(`/livros${querySearchValue}`);
+      router.push(`/livros/${search_value}`);
       setLoading(false);
     });
     

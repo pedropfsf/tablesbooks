@@ -14,7 +14,7 @@ import useFormatItemBook from "@/hooks/useFormatItemBook";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  const dataFormatted = useFormatItemBook(response.data);
+  const dataFormatted = useFormatItemBook(response?.data ?? {});
   
   return (
     <ContainerPageDefault theme={theme}>
@@ -23,7 +23,7 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          dataFormatted.map((item: any, index: number) => (
+          dataFormatted?.map((item: any, index: number) => (
             <ItemBook 
               theme={theme} 
               key={index}
@@ -35,6 +35,13 @@ export default function Books({ pageProps: { response }}: any) {
     </ContainerPageDefault>
   )
 };
+
+export async function getStaticPaths(context: any) {
+  return {
+    paths: [ `/livros/${context.query?.search_value}` ],
+    fallback: true,
+  }
+}
 
 export async function getStaticProps(context: any) {
   try {

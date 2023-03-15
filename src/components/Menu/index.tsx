@@ -27,13 +27,13 @@ export default function Menu() {
       <IconMenu
         Icon={Home}
         theme={theme}
-        nameRoute="/"
+        nameRoute=""
         onClick={nextPage()}
       />
       <IconMenu
         Icon={BookAlt}
         theme={theme}
-        nameRoute="/livros"
+        nameRoute="livros"
         onClick={nextPage("livros")}
       />
 
