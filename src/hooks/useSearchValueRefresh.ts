@@ -15,7 +15,6 @@ export default function useSearchValueRefresh() {
   } = useSearchBooks();
 
   useEffect(() => {
-
     if (Words.getIsSpace(currentSearch)) {
       return;
     }
