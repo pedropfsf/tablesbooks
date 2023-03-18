@@ -8,31 +8,13 @@ import FieldSearch from "../FieldSearch";
 
 import useTheme from "@/features/theme/useTheme";
 import useSearchBooks from "@/features/searchBooks/useSearchBooks";
-import Timer from "@/utils/Timer";
-import Words from "@/utils/Words";
-import Request from "@/utils/Request";
+import useSearchValueRefresh from "@/hooks/useSearchValueRefresh";
 
 export default function Header() {
-  const router = useRouter();
   const { theme } = useTheme();
-  const { handleSetCurrentSearch, currentSearch } = useSearchBooks();
-  const [ loading, setLoading ] = useState(false);
-
-  useEffect(() => {
-    if (Words.getIsSpace(currentSearch)) {
-      return;
-    }
-
-    setLoading(true);
-
-    const search_value = Words.removeSpaceStartEnd(currentSearch);
-
-    Timer.applyDelay(() => {
-      router.push(`/livros/${search_value}`);
-      setLoading(false);
-    });
-    
-  }, [currentSearch]);
+  const { handleSetCurrentSearch, currentSearch, loading } = useSearchBooks();
+  
+  useSearchValueRefresh();
 
   return (
     <Container theme={theme}>
