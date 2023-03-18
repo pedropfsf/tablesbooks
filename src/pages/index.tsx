@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 
 import Welcome from "@/components/Welcome";
@@ -11,10 +9,6 @@ export default function Home() {
 
   return (
     <ContainerPageDefault theme={theme}>
-      <Head>
-        <link rel="icon" type="image/png" href="/images/svgs/logo-tablebooks.png"/>
-        <title>Tablebooks</title>
-      </Head>
       <Welcome theme={theme}/>
     </ContainerPageDefault>
   )

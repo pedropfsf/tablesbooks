@@ -1,3 +1,4 @@
+import Head from "next/head";
 import type { AppProps } from 'next/app';
 import dynamic from 'next/dynamic';
 import { Provider } from 'react-redux';
@@ -18,6 +19,10 @@ export default function App({ Component, ...pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
+      <Head>
+        <link rel="icon" type="image/png" href="/images/svgs/logo-tablebooks.png"/>
+        <title>Tablebooks</title>
+      </Head>
       <ContainerCore>
         <GlobalStyles/>
         <Header/>
