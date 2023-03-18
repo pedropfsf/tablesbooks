@@ -1,9 +1,11 @@
 import { useMemo } from "react";
+import { useRouter } from "next/router";
 
 import { BookAlt } from "@styled-icons/boxicons-regular/BookAlt";
 import { Google } from "@styled-icons/boxicons-logos/Google";
 import { BookAlt as BookLink } from "@styled-icons/boxicons-solid/BookAlt";
 import { Amazon } from "@styled-icons/boxicons-logos/Amazon";
+import { RightArrowSquare } from "@styled-icons/boxicons-solid/RightArrowSquare";
 
 import IconCustomized from "../IconCustomized";
 
@@ -14,10 +16,12 @@ import {
   ImageBook,
   Description,
   Title,
-  Buttons
+  Buttons,
+  ButtonsLeft
 } from "./styles";
 
 type ItemBookProps = {
+  id: string;
   theme: "light" | "dark";
   imageSrc?: string; 
   title: string; 
@@ -29,6 +33,7 @@ type ItemBookProps = {
 }
 
 export default function ItemBook({ 
+  id,
   theme, 
   imageSrc, 
   title, 
@@ -38,6 +43,7 @@ export default function ItemBook({
   linkGoogleSearch,
   linkAmazonSearch
 }: ItemBookProps) {
+  const router = useRouter();
 
   const imageItemBook = useMemo(() => {
     if (imageSrc) {
@@ -74,23 +80,33 @@ export default function ItemBook({
         {description}
       </Description>
       <Buttons>
+        <ButtonsLeft>
+          <IconCustomized
+            Icon={Google}
+            theme={theme}
+            title="Link do livro na busca do google"
+            onClick={() => window.open(linkGoogleSearch)}
+          />
+          <IconCustomized
+            Icon={BookLink}
+            theme={theme}
+            title="Link do livro no Google Livros"
+            onClick={() => window.open(linkBook)}
+          />
+          <IconCustomized
+            Icon={Amazon}
+            theme={theme}
+            title="Link do livro na busca da amazon"
+            onClick={() => window.open(linkAmazonSearch)}
+          />
+        </ButtonsLeft>
         <IconCustomized
-          Icon={Google}
+          Icon={RightArrowSquare}
           theme={theme}
-          title="Link do livro na busca do google"
-          onClick={() => window.open(linkGoogleSearch)}
-        />
-        <IconCustomized
-          Icon={BookLink}
-          theme={theme}
-          title="Link do livro no Google Livros"
-          onClick={() => window.open(linkBook)}
-        />
-        <IconCustomized
-          Icon={Amazon}
-          theme={theme}
-          title="Link do livro na busca da amazon"
-          onClick={() => window.open(linkAmazonSearch)}
+          isActivePermanent={true}
+          title="Ver o livro"
+          onClick={() => router.push(`/livro/${id}`)}
+          size={32}
         />
       </Buttons>
     </Container>

@@ -9,17 +9,11 @@ import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
 import useTheme from "@/features/theme/useTheme";
-import useRenderItemsBook from "@/hooks/useRenderItemsBook";
-import useMessageErrorEffect from "@/hooks/useMessageErrorEffect";
+import useFormatItemBook from "@/hooks/useRenderItemsBook";
 
-export default function Books({ pageProps: { response }}: any) {
+export default function Book({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  const items = useRenderItemsBook(response?.data ?? {});
-
-  useMessageErrorEffect("error", {
-    isError: response.data.isError,
-    message: response.data.message,
-  });
+  const dataFormatted = useFormatItemBook(response?.data ?? {});
 
   return (
     <ContainerPageDefault theme={theme}>
@@ -28,7 +22,7 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          items?.map((item: any, index: number) => (
+          dataFormatted?.map((item: any, index: number) => (
             <ItemBook 
               theme={theme} 
               key={index}
@@ -43,17 +37,13 @@ export default function Books({ pageProps: { response }}: any) {
 
 export async function getStaticPaths(context: any) {
   return {
-    paths: [ `/livros/${context.params?.search_value}` ],
+    paths: [ `/livro/${context.params?.id}` ],
     fallback: true,
   }
 }
 
 export async function getStaticProps(context: any) {
-  const searchValueRoute = context.params?.search_value;
-
-  const response = await BooksApi.getAllBooks({
-    q: searchValueRoute ?? "",
-  });
+  const response = await BooksApi.getById(context.params?.id);
 
   return {
     props: {

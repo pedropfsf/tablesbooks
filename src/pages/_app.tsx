@@ -7,7 +7,7 @@ import { ContainerCore } from "@/elements/ContainerCore";
 import GlobalStyles from '@/styles/GlobalStyles';
 import wrapper from "@/app/wrapper";
 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Header = dynamic(() => import("@/components/Header"), {
   ssr: false,

@@ -10,11 +10,17 @@ import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
 import Words from "@/utils/Words";
 import useTheme from "@/features/theme/useTheme";
-import useFormatItemBook from "@/hooks/useFormatItemBook";
+import useRenderItemsBook from "@/hooks/useRenderItemsBook";
+import useMessageErrorEffect from "@/hooks/useMessageErrorEffect";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  const dataFormatted = useFormatItemBook(response.data);
+  const items = useRenderItemsBook(response.data);
+
+  useMessageErrorEffect("error", {
+    isError: response.data.isError,
+    message: response.data.message,
+  });
   
   return (
     <ContainerPageDefault theme={theme}>
@@ -23,7 +29,7 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          dataFormatted.map((item: any, index: number) => (
+          items.map((item: any, index: number) => (
             <ItemBook 
               theme={theme} 
               key={index}
@@ -37,21 +43,13 @@ export default function Books({ pageProps: { response }}: any) {
 };
 
 export async function getStaticProps(context: any) {
-  try {
-    const data = await BooksApi.getAllBooks({
-      q: context.query?.search_value ?? Words.generateRandom(),
-    });
-  
-    return {
-      props: {
-        response: data,
-      }
-    }
-  } catch (error) {
-    return {
-      props: {
-        response: error,
-      }
+  const response = await BooksApi.getAllBooks({
+    q: Words.generateRandom(),
+  });
+
+  return {
+    props: {
+      response,
     }
   }
 }
