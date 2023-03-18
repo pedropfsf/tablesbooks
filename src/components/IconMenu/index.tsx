@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { StyledIcon, StyledIconProps } from "@styled-icons/styled-icon";
 
 import { useRouter } from "next/router";
@@ -13,15 +13,16 @@ type IconMenuProps = StyledIconProps & {
 
 export default function IconMenu({ Icon, nameRoute, theme, ...props }: IconMenuProps) {
   const router = useRouter();
+  const path = useMemo(() => router.asPath.split("/")[1], [router]);
 
   const setTheme = useCallback(() => {
-    if (router.pathname === nameRoute) {
+    if (path === nameRoute) {
       return colors.red;
     } else {
       return theme === "light" ? colors.black : colors.white;
     }
   }, [
-    router, 
+    path, 
     nameRoute, 
     theme, 
     colors

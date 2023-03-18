@@ -1,80 +1,30 @@
+import { toast, ToastContainer } from "react-toastify";
 import Head from "next/head";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
 
-import ItemBook from "@/components/ItemBook";
+const ItemBook = dynamic(() => import("@/components/ItemBook"), {
+  ssr: false
+});
+
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
-import Words from "@/utils/Words";
 import useTheme from "@/features/theme/useTheme";
 import useFormatItemBook from "@/hooks/useFormatItemBook";
+import useSearchValueRefresh from "@/hooks/useSearchValueRefresh";
 
-import LoadingSpin from "react-loading-spin";
-import colors from "@/styles/colors";
-
-export default function Books() {
-  const router: any = useRouter();
+export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  const [responseData, setResponseData] = useState<any>({});
-  const [loading, setLoading] = useState(false);
-  const dataFormatted = useFormatItemBook(responseData);
-  
-  const fetchBooksPerSearch = useCallback(async () => {
-    try {
-      setLoading(true);
+  const dataFormatted = useFormatItemBook(response?.data ?? {});
 
-      const responseData = await BooksApi.getAllBooks({
-        q: router.query?.search_value ?? "",
-      });
-
-      setResponseData(responseData.data);
-
-    } catch (error) {
-      toast("Não foi possível buscar os livros", {
-        hideProgressBar: true,
-        autoClose: 2000,
-        type: "error",
-      });
-
-    } finally {
-      setLoading(false);
-    }
-  }, [
-    router,
-    setLoading,
-    setResponseData,
-    BooksApi
-  ]);
-
-  useEffect(() => {
-    fetchBooksPerSearch();
-  }, [router.query?.search_value]);
+  useSearchValueRefresh();
 
   return (
     <ContainerPageDefault theme={theme}>
       <Head>
         <title>Tablebooks - Livros</title>
       </Head>
-      { 
-        loading
-        && 
-        <>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <LoadingSpin
-            size="100px"
-            primaryColor={colors.red}
-          />
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-        </> 
-      }
       <ContainerItemBooks>
         {
           dataFormatted?.map((item: any, index: number) => (
@@ -89,3 +39,32 @@ export default function Books() {
     </ContainerPageDefault>
   )
 };
+
+export async function getStaticPaths(context: any) {
+  return {
+    paths: [ `/livros/${context.query?.search_value}` ],
+    fallback: true,
+  }
+}
+
+export async function getStaticProps(context: any) {
+  try {
+    const searchValueRoute = context.params?.search_value;
+
+    const data = await BooksApi.getAllBooks({
+      q: searchValueRoute ?? "",
+    });
+
+    return {
+      props: {
+        response: data,
+      }
+    }
+  } catch (error) {
+    return {
+      props: {
+        response: error,
+      }
+    }
+  }
+}

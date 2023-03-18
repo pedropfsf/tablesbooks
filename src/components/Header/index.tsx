@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { Container } from "./styles";
@@ -8,23 +8,13 @@ import FieldSearch from "../FieldSearch";
 
 import useTheme from "@/features/theme/useTheme";
 import useSearchBooks from "@/features/searchBooks/useSearchBooks";
-import Timer from "@/utils/Timer";
-import Words from "@/utils/Words";
+import useSearchValueRefresh from "@/hooks/useSearchValueRefresh";
 
 export default function Header() {
-  const router = useRouter();
   const { theme } = useTheme();
-  const { handleSetCurrentSearch, currentSearch } = useSearchBooks();
-
-  useEffect(() => {
-    if (Words.getIsSpace(currentSearch)) {
-      return;
-    }
-
-    Timer.applyDelay(() => {
-      router.push(`/livros/${Words.removeSpaceStartEnd(currentSearch)}`);
-    });
-  }, [currentSearch]);
+  const { handleSetCurrentSearch, currentSearch, loading } = useSearchBooks();
+  
+  useSearchValueRefresh();
 
   return (
     <Container theme={theme}>
@@ -32,6 +22,7 @@ export default function Header() {
         theme={theme}
         value={currentSearch}
         onChange={handleSetCurrentSearch}
+        loading={loading}
       />
       <Menu/>
     </Container>

@@ -1,8 +1,10 @@
 import Head from "next/head";
-import { useMemo } from "react";
-import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
-import ItemBook from "@/components/ItemBook";
+const ItemBook = dynamic(() => import("@/components/ItemBook"), {
+  ssr: false
+});
+
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
@@ -12,7 +14,6 @@ import useFormatItemBook from "@/hooks/useFormatItemBook";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  
   const dataFormatted = useFormatItemBook(response.data);
   
   return (
@@ -35,10 +36,10 @@ export default function Books({ pageProps: { response }}: any) {
   )
 };
 
-export async function getStaticProps() {
+export async function getStaticProps(context: any) {
   try {
     const data = await BooksApi.getAllBooks({
-      q: Words.generateRandom(),
+      q: context.query?.search_value ?? Words.generateRandom(),
     });
   
     return {

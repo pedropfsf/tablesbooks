@@ -33,8 +33,6 @@ describe("generateRandom", () => {
   const indexRandom = Math.floor(Math.random() * listWords.length);
   const result = listWords[indexRandom];
 
-  console.log(result);
-
   it ("testing functionality to generate random words", () => {
     // ASSERT
     expect(listWords.includes(result)).toBeTruthy();

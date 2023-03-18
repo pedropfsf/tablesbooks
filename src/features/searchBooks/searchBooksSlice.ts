@@ -3,10 +3,12 @@ import type { RootState } from "@/app/wrapper";
 
 type InitialStateSearchBooks = {
   currentSearch: string;
+  loading: boolean;
 }
 
 const initialState: InitialStateSearchBooks = {
   currentSearch: "",
+  loading: false,
 }
 
 const searchBooksSlice = createSlice({
@@ -16,14 +18,19 @@ const searchBooksSlice = createSlice({
     setCurrentSearch: (state, action) => {
       state.currentSearch = action.payload;
     },
-    fetchBooks: (state) => {
-
-    }
+    enableLoading: (state) => {
+      state.loading = true;
+    },
+    disableLoading: (state) => {
+      state.loading = false;
+    },
   }
 });
 
-export const { setCurrentSearch } = searchBooksSlice.actions;
-
-// export const selectSearchBooks = (value: RootState) => value.searchBooks.currentSearch;
+export const { 
+  setCurrentSearch, 
+  disableLoading, 
+  enableLoading 
+} = searchBooksSlice.actions;
 
 export default searchBooksSlice.reducer

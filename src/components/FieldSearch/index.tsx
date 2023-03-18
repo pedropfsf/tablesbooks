@@ -2,15 +2,21 @@ import { InputHTMLAttributes } from "react";
 
 import { SearchOutline } from "@styled-icons/evaicons-outline/SearchOutline";
 
-import { Container, Field } from "./styles";
+import { 
+  Container, 
+  Field, 
+} from "./styles";
 
 import colors from "@/styles/colors";
 
+import Spinner from "../Spinner";
+
 type FieldSearchProps = InputHTMLAttributes<HTMLInputElement> & {
-  theme?: "light" | "dark"
+  theme?: "light" | "dark";
+  loading?: boolean;
 };
 
-export default function FieldSearch({ theme, ...props }: FieldSearchProps) {
+export default function FieldSearch({ theme, loading, ...props }: FieldSearchProps) {
   return (
     <Container color={theme === "light" ? colors.black : colors.white}>
       <Field
@@ -18,10 +24,18 @@ export default function FieldSearch({ theme, ...props }: FieldSearchProps) {
         placeholder="Pesquise livros..."
         {...props}
       />
-      <SearchOutline
-        size={24}
-        color={colors.red}
-      />
+      {
+        loading
+        ?
+          <Spinner
+            size="16px"
+          />
+        :
+        <SearchOutline
+          size={24}
+          color={colors.red}
+        />
+      }
     </Container>
   )
 };
