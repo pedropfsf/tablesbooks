@@ -6,31 +6,17 @@ const ItemBook = dynamic(() => import("@/components/ItemBook"), {
 });
 
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
-import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
 import useTheme from "@/features/theme/useTheme";
-import useFormatItemBook from "@/hooks/useRenderItemsBook";
 
 export default function Book({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  const dataFormatted = useFormatItemBook(response?.data ?? {});
 
   return (
     <ContainerPageDefault theme={theme}>
       <Head>
-        <title>Tablebooks - Livros</title>
+        <title>{response.data.volumeInfo.title}</title>
       </Head>
-      <ContainerItemBooks>
-        {
-          dataFormatted?.map((item: any, index: number) => (
-            <ItemBook 
-              theme={theme} 
-              key={index}
-              {...item}
-            />
-          ))
-        }
-      </ContainerItemBooks>
     </ContainerPageDefault>
   )
 };

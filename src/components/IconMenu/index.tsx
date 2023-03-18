@@ -9,9 +9,16 @@ type IconMenuProps = StyledIconProps & {
   Icon: StyledIcon;
   nameRoute: string;
   theme?: "light" | "dark" | null;
+  isVisible?: boolean;
 };
 
-export default function IconMenu({ Icon, nameRoute, theme, ...props }: IconMenuProps) {
+export default function IconMenu({ 
+  Icon, 
+  nameRoute, 
+  theme, 
+  isVisible = true,
+  ...props 
+}: IconMenuProps) {
   const router = useRouter();
   const path = useMemo(() => router.asPath.split("/")[1], [router]);
 
@@ -27,6 +34,10 @@ export default function IconMenu({ Icon, nameRoute, theme, ...props }: IconMenuP
     theme, 
     colors
   ]);
+
+  if (!isVisible) {
+    return <></>;
+  }
 
   return (
     <Icon

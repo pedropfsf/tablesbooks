@@ -30,6 +30,7 @@ type ItemBookProps = {
   linkBook: string;
   linkGoogleSearch: string;
   linkAmazonSearch: string;
+  onBookEnter?: (id: string) => void;
 }
 
 export default function ItemBook({ 
@@ -41,7 +42,8 @@ export default function ItemBook({
   keyElement, 
   linkBook, 
   linkGoogleSearch,
-  linkAmazonSearch
+  linkAmazonSearch,
+  onBookEnter
 }: ItemBookProps) {
   const router = useRouter();
 
@@ -105,7 +107,13 @@ export default function ItemBook({
           theme={theme}
           isActivePermanent={true}
           title="Ver o livro"
-          onClick={() => router.push(`/livro/${id}`)}
+          onClick={() => {
+            if (onBookEnter) {
+              onBookEnter(id);
+            }
+
+            router.push(`/livro/${id}`);
+          }}
           size={32}
         />
       </Buttons>

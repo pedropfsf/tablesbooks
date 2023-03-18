@@ -11,10 +11,12 @@ import BooksApi from "@/api/BooksApi";
 import useTheme from "@/features/theme/useTheme";
 import useRenderItemsBook from "@/hooks/useRenderItemsBook";
 import useMessageErrorEffect from "@/hooks/useMessageErrorEffect";
+import useSearchBooks from "@/features/searchBooks/useSearchBooks";
 
 export default function Books({ pageProps: { response }}: any) {
   const { theme } = useTheme();
   const items = useRenderItemsBook(response?.data ?? {});
+  const { setCurrentIdSaved } = useSearchBooks();
 
   useMessageErrorEffect("error", {
     isError: response.data.isError,
@@ -32,6 +34,7 @@ export default function Books({ pageProps: { response }}: any) {
             <ItemBook 
               theme={theme} 
               key={index}
+              onBookEnter={id => setCurrentIdSaved(id)}
               {...item}
             />
           ))

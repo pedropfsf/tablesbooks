@@ -2,8 +2,6 @@ import Words from "@/utils/Words";
 
 export default function useRenderItemsBook(data: any) {
   return data?.items?.map((item: any) => {
-    console.log(item);
-
     const { title, description, canonicalVolumeLink } = item.volumeInfo;
     
     const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
