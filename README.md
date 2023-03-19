@@ -11,6 +11,12 @@
 
 <p align="center">Plataforma de busca de livros</p>
 
+## Sobre
+Objetivo desse sistema é fazer busca de livros de maneira dinâmica e encontrar informações relevantes a elas, o sistema ainda linka o livro para ler
+no Google Livros e amazon, para acessar clique nesse link abaixo
+
+- [tablebooks](https://tablesbooks.vercel.app/)
+
 ## Apresentação
 <br/>
 
@@ -30,12 +36,12 @@
   <img
        src="https://github.com/pedropfsf/tablesbooks/blob/develop/presentation/presentation-home-dark-mobile.png"
        alt="imagem de apresentação da página home"
-       width="310px"
+       width="290px"
    />
   <img
        src="https://github.com/pedropfsf/tablesbooks/blob/develop/presentation/presentation-home-light-mobile.png"
        alt="imagem de apresentação da página home"
-       width="310px"
+       width="290px"
    />
 </div>
 
@@ -57,12 +63,12 @@
   <img
        src="https://github.com/pedropfsf/tablesbooks/blob/develop/presentation/presentation-book-dark-mobile.png"
        alt="imagem de apresentação da página home"
-       width="310px"
+       width="290px"
    />
   <img
        src="https://github.com/pedropfsf/tablesbooks/blob/develop/presentation/presentation-book-light-mobile.png"
        alt="imagem de apresentação da página home"
-       width="310px"
+       width="290px"
    />
 </div>
 
@@ -82,21 +88,17 @@
   <img
        src="https://github.com/pedropfsf/tablesbooks/blob/develop/presentation/presentation-book-item-dark-mobile.png"
        alt="imagem de apresentação da página home"
-       width="310px"
+       width="290px"
    />
   <img
        src="https://github.com/pedropfsf/tablesbooks/blob/develop/presentation/presentation-book-item-light-mobile.png"
        alt="imagem de apresentação da página home"
-       width="310px"
+       width="290px"
    />
 </div>
 
 <br/>
 <br/>
-
-## Sobre
-Objetivo desse sistema é fazer busca de livros de maneira dinâmica e encontrar informações relevantes a elas, o sistema ainda linka o livro para ler
-no Google Livros e amazon
 
 ## Tecnologias
 
