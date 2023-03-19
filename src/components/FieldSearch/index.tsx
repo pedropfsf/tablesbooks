@@ -28,7 +28,7 @@ export default function FieldSearch({ theme, loading, ...props }: FieldSearchPro
         loading
         ?
           <Spinner
-            size="16px"
+            size="24px"
           />
         :
         <SearchOutline

@@ -9,20 +9,28 @@ type IconCustomizedProps = StyledIconProps & {
   Icon: StyledIcon;
   theme?: "light" | "dark" | null;
   size?: number;
+  isActivePermanent?: boolean;
 };
 
-export default function IconCustomized({ Icon, size = 24, theme, ...props }: IconCustomizedProps) {
+export default function IconCustomized({ 
+  Icon, 
+  size = 24, 
+  isActivePermanent = false, 
+  theme, 
+  ...props 
+}: IconCustomizedProps) {
   const [isActive, setIsActive] = useState(false);
 
   const setTheme = useCallback(() => {
-    if (isActive) {
+    if (isActivePermanent || isActive) {
       return colors.red;
-    } else {
-      return theme === "light" ? colors.black : colors.white;
-    }
+
+    } 
+
+    return theme === "light" ? colors.black : colors.white;
   }, [
     theme, 
-    colors,
+    isActivePermanent,
     isActive,
   ]);
 

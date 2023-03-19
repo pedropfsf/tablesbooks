@@ -1,12 +1,13 @@
 import Words from "@/utils/Words";
 
-export default function useFormatItemBook(data: any) {
+export default function useRenderItemsBook(data: any) {
   return data?.items?.map((item: any) => {
     const { title, description, canonicalVolumeLink } = item.volumeInfo;
     
     const imageSrc = item.volumeInfo?.imageLinks?.thumbnail;
     
     return {
+      id: item.id,
       imageSrc, 
       title,
       description: Words.setLimitString(description),

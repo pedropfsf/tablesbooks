@@ -1,7 +1,5 @@
-import { toast, ToastContainer } from "react-toastify";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 
 const ItemBook = dynamic(() => import("@/components/ItemBook"), {
   ssr: false
@@ -11,14 +9,19 @@ import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 import { ContainerItemBooks } from "@/elements/ContainerItemBooks";
 import BooksApi from "@/api/BooksApi";
 import useTheme from "@/features/theme/useTheme";
-import useFormatItemBook from "@/hooks/useFormatItemBook";
-import useSearchValueRefresh from "@/hooks/useSearchValueRefresh";
+import useRenderItemsBook from "@/hooks/useRenderItemsBook";
+import useMessageErrorEffect from "@/hooks/useMessageErrorEffect";
+import useSearchBooks from "@/features/searchBooks/useSearchBooks";
 
-export default function Books({ pageProps: { response }}: any) {
+export default function ResearchedBooks({ pageProps: { response }}: any) {
   const { theme } = useTheme();
-  const dataFormatted = useFormatItemBook(response?.data ?? {});
+  const items = useRenderItemsBook(response?.data ?? {});
+  const { setCurrentIdSaved } = useSearchBooks();
 
-  useSearchValueRefresh();
+  useMessageErrorEffect("error", {
+    isError: response?.data?.isError,
+    message: response?.data?.message,
+  });
 
   return (
     <ContainerPageDefault theme={theme}>
@@ -27,10 +30,11 @@ export default function Books({ pageProps: { response }}: any) {
       </Head>
       <ContainerItemBooks>
         {
-          dataFormatted?.map((item: any, index: number) => (
+          items?.map((item: any, index: number) => (
             <ItemBook 
               theme={theme} 
               key={index}
+              onBookEnter={id => setCurrentIdSaved(id)}
               {...item}
             />
           ))
@@ -41,30 +45,24 @@ export default function Books({ pageProps: { response }}: any) {
 };
 
 export async function getStaticPaths(context: any) {
+  const search_value = context.params?.search_value;
+  
   return {
-    paths: [ `/livros/${context.query?.search_value}` ],
+    paths: search_value ? [{ params: { search_value } }] : [],
     fallback: true,
   }
 }
 
 export async function getStaticProps(context: any) {
-  try {
-    const searchValueRoute = context.params?.search_value;
+  const searchValueRoute = context.params?.search_value;
 
-    const data = await BooksApi.getAllBooks({
-      q: searchValueRoute ?? "",
-    });
+  const response = await BooksApi.getAllBooks({
+    q: searchValueRoute ?? "",
+  });
 
-    return {
-      props: {
-        response: data,
-      }
-    }
-  } catch (error) {
-    return {
-      props: {
-        response: error,
-      }
+  return {
+    props: {
+      response,
     }
   }
 }

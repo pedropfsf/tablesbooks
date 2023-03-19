@@ -12,12 +12,12 @@ export default function useTheme() {
   const dispatch = useAppDispatch();
   const theme = useAppSelector(selectTheme);
 
-  const handleSetThemeDark = useCallback(() => dispatch(applyThemeDark()), []);
-  const handleSetThemeLight = useCallback(() => dispatch(applyThemeLight()), []);
+  const handleSetThemeDark = useCallback(() => dispatch(applyThemeDark()), [dispatch]);
+  const handleSetThemeLight = useCallback(() => dispatch(applyThemeLight()), [dispatch]);
   
   useEffect(() => {
     dispatch(loadTheme());
-  }, []);
+  }, [dispatch]);
 
   return {
     handleSetThemeDark,

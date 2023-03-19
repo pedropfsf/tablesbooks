@@ -1,7 +1,8 @@
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
 
-import useTheme from "@/features/theme/useTheme";
 import MessageIllustration from "@/components/MessageIllustration";
+
+import useTheme from "@/features/theme/useTheme";
 
 export default function Home() {
   const {theme} = useTheme();
@@ -10,9 +11,9 @@ export default function Home() {
     <ContainerPageDefault theme={theme}>
       <MessageIllustration 
         theme={theme}
-        src="/images/svgs/illustration-welcome.svg"
-        alt="Ilustração de uma pessoa passando página de um livro gigante"
-        message="Sinta-se livre para pesquisar sobre qualquer livro que queira encontrar :)" 
+        src="/images/svgs/illustration-not-selected-book.svg"
+        alt="De uma mulher do lado de uma bolinha de carregamento e atrás de uma caixa branca"
+        message="Nenhum livro para ser visualizado :(" 
       />
     </ContainerPageDefault>
   )
