@@ -43,7 +43,7 @@ export default function Book({ pageProps: { response }}: any) {
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="start"
-          padding={matches ? "0" : "48px"}
+          padding={matches ? "25px 0 0 0" : "48px"}
           gap="32px"
         >
           <TitleDetailsBook theme={theme}>

@@ -9,6 +9,8 @@ type BoxProps = {
 }
 
 const Box = styled.div<BoxProps>`
+  width: 100%;
+
   display: flex;
   flex-direction: ${props => props.flexDirection ?? "row"};
   justify-content: ${props => props.justifyContent ?? "center"};
