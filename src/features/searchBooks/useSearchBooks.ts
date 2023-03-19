@@ -26,27 +26,27 @@ export default function useSearchBooks() {
 
   const handleSetCurrentSearch = useCallback((event: any) => {
     dispatch(setCurrentSearch(event.target.value));
-  }, []);
+  }, [dispatch]);
 
   const setCurrentSearchState = useCallback((value: string) => {
     dispatch(setCurrentSearch(value));
-  }, []);
+  }, [dispatch]);
 
   const onEnableLoading = useCallback(() => {
     dispatch(enableLoading());
-  }, []);
+  }, [dispatch]);
 
   const onDisableLoading = useCallback(() => {
     dispatch(disableLoading());
-  }, []);
+  }, [dispatch]);
 
   const setCurrentIdSaved = useCallback((value: string) => {
     dispatch(setIdSaved(value));
-  }, []);
+  }, [dispatch]);
   
   const clearCurrentIdSaved = useCallback(() => {
     dispatch(clearIdSaved());
-  }, []);
+  }, [dispatch]);
 
   return {
     currentSearch,

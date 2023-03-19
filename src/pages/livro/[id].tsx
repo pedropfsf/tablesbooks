@@ -77,14 +77,16 @@ export default function Book({ pageProps: { response }}: any) {
 };
 
 export async function getStaticPaths(context: any) {
+  const id = context.params?.id;
+  
   return {
-    paths: [ `/livro/${context.params?.id}` ],
+    paths: id ? [ { params: { id } } ] : [],
     fallback: true,
   }
 }
 
 export async function getStaticProps(context: any) {
-  const response = await BooksApi.getById(context.params?.id);
+  const response = await BooksApi.getById(context.params?.id ?? "");
 
   return {
     props: {

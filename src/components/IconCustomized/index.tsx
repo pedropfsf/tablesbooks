@@ -30,7 +30,7 @@ export default function IconCustomized({
     return theme === "light" ? colors.black : colors.white;
   }, [
     theme, 
-    colors,
+    isActivePermanent,
     isActive,
   ]);
 

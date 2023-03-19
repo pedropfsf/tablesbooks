@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import colors from "@/styles/colors";
 
+import Theme, { ThemeTyperComponent } from "@/utils/Theme";
+
 export const Container = styled.div`
   flex: 1;
   display: flex;
@@ -11,10 +13,7 @@ export const Container = styled.div`
   gap: 32px;
 `;
 
-export const Illustration = styled.img.attrs({
-  src: "/images/svgs/illustration-welcome.svg",
-  alt: "Ilustração de uma pessoa passando página de um livro gigante",
-})`
+export const Illustration = styled.img<ThemeTyperComponent>`
   width: 400px;
   
   object-fit: cover;
@@ -22,14 +21,12 @@ export const Illustration = styled.img.attrs({
   @media screen and (max-width: 500px) {
     width: calc(100% - 24px);
   }
+
+  color: ${Theme.applyTheme()};
 `;
 
-export type TitleProps = {
-  theme?: "dark" | "light";
-}
-
-export const Title = styled.h3<TitleProps>`
-  color: ${props => props.theme === "light" ? colors.black : colors.white};
+export const Title = styled.h3<ThemeTyperComponent>`
+  color: ${Theme.applyTheme()};
 
   text-align: center;
 `;

@@ -23,7 +23,7 @@ export default function Menu() {
     return () => {
       router.push(`/${route ?? ""}`)
     }
-  }, []);
+  }, [router]);
 
   return (
     <Container>

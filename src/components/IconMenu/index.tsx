@@ -32,7 +32,6 @@ export default function IconMenu({
     path, 
     nameRoute, 
     theme, 
-    colors
   ]);
 
   if (!isVisible) {

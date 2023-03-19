@@ -45,8 +45,10 @@ export default function Books({ pageProps: { response }}: any) {
 };
 
 export async function getStaticPaths(context: any) {
+  const search_value = context.params?.search_value;
+  
   return {
-    paths: [ `/livros/${context.params?.search_value}` ],
+    paths: search_value ? [{ params: { search_value } }] : [],
     fallback: true,
   }
 }

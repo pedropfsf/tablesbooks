@@ -10,11 +10,16 @@ export default function useMediaQuerie(
   value: string, 
   { onMatchesTrue, onMatchesFalse }: Events = {}
 ) {
-  if (typeof window === 'undefined') {
-    return false;
-  }
   const [ valueSaveMatches, setValueSaveMatches ] = useState(false);
-  const mediaQuerie = useMemo(() => matchMedia(`(max-width: ${value})`), [value]);
+  
+  
+  const mediaQuerie = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      return matchMedia(`(max-width: ${value})`);
+    }
+    
+    return null;
+  }, [value]);
   
   useEffect(() => {
     const handleMediaQuerie = ({ matches }: any) => {
@@ -31,9 +36,14 @@ export default function useMediaQuerie(
       }
     };
 
+    if (mediaQuerie === null) {
+      return;
+    }
+  
     mediaQuerie.addEventListener("change", handleMediaQuerie);
     handleMediaQuerie(mediaQuerie);
   }, []);
 
+  
   return valueSaveMatches;
 } 
