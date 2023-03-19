@@ -1,29 +1,11 @@
 import styled from "styled-components";
 import Image from "next/image";
+
 import colors from "@/styles/colors";
+import Theme from "@/utils/Theme";
 
 type ThemeDarkProps = {
   theme?: "light" | "dark";
-}
-
-function applyTheme(directionColor: "black" | "white" = "black") {
-  if (directionColor === "black") {
-    return (props: any) => {
-      if (props.theme === "light") {
-        return colors.black;
-      } else {
-        return colors.white;
-      }
-    }
-  } else {
-    return (props: any) => {
-      if (props.theme === "light") {
-        return colors.white;
-      } else {
-        return colors.black;
-      }
-    }
-  }
 }
 
 export const Container = styled.div<ThemeDarkProps>`
@@ -37,9 +19,9 @@ export const Container = styled.div<ThemeDarkProps>`
 
   padding: 16px;
 
-  background-color: ${applyTheme("white")};
+  background-color: ${Theme.applyTheme("white")};
 
-  border: ${applyTheme()} dashed 2px;
+  border: ${Theme.applyTheme()} dashed 2px;
   border-radius: 8px;
 
   @media screen and (max-width: 627px) {
@@ -47,18 +29,14 @@ export const Container = styled.div<ThemeDarkProps>`
   }
 `;
 
-export const ImageBook = styled.img`
-  width: 200px;
-`;
-
 export const Title = styled.h3<ThemeDarkProps>`
-  color: ${applyTheme()};
+  color: ${Theme.applyTheme()};
   
   text-align: center;
 `;
 
 export const Description = styled.p<ThemeDarkProps>`
-  color: ${applyTheme()};
+  color: ${Theme.applyTheme()};
   
   text-align: start;
 `;

@@ -1,19 +1,15 @@
-import { useMemo } from "react";
 import { useRouter } from "next/router";
 
-import { BookAlt } from "@styled-icons/boxicons-regular/BookAlt";
-import { Google } from "@styled-icons/boxicons-logos/Google";
 import { BookAlt as BookLink } from "@styled-icons/boxicons-solid/BookAlt";
 import { Amazon } from "@styled-icons/boxicons-logos/Amazon";
 import { RightArrowSquare } from "@styled-icons/boxicons-solid/RightArrowSquare";
 
 import IconCustomized from "../IconCustomized";
 
-import colors from "@/styles/colors";
+import BookImage from "../BookImage";
 
 import { 
   Container, 
-  ImageBook,
   Description,
   Title,
   Buttons,
@@ -47,34 +43,13 @@ export default function ItemBook({
 }: ItemBookProps) {
   const router = useRouter();
 
-  const imageItemBook = useMemo(() => {
-    if (imageSrc) {
-      return (
-        <ImageBook
-          src={imageSrc}
-          alt={`Imagem do livro "${title}"`}
-        />
-      )
-    } else {
-      const colorWithTheme = theme === "light" ? colors.black : colors.white;
-
-      return (
-        <BookAlt
-          size={200}
-          color={colorWithTheme}
-        />
-      )
-    }
-  }, [
-    imageSrc,
-    colors,
-    theme,
-    title,
-  ])
-
   return (
     <Container theme={theme} key={keyElement}>
-      {imageItemBook}
+      <BookImage
+        theme={theme}
+        title={title}
+        imageSrc={imageSrc}
+      />
       <Title theme={theme}>
         {title}
       </Title>
@@ -83,12 +58,6 @@ export default function ItemBook({
       </Description>
       <Buttons>
         <ButtonsLeft>
-          <IconCustomized
-            Icon={Google}
-            theme={theme}
-            title="Link do livro na busca do google"
-            onClick={() => window.open(linkGoogleSearch)}
-          />
           <IconCustomized
             Icon={BookLink}
             theme={theme}
