@@ -13,14 +13,14 @@ import useRenderItemsBook from "@/hooks/useRenderItemsBook";
 import useMessageErrorEffect from "@/hooks/useMessageErrorEffect";
 import useSearchBooks from "@/features/searchBooks/useSearchBooks";
 
-export default function Books({ pageProps: { response }}: any) {
+export default function ResearchedBooks({ pageProps: { response }}: any) {
   const { theme } = useTheme();
   const items = useRenderItemsBook(response?.data ?? {});
   const { setCurrentIdSaved } = useSearchBooks();
 
   useMessageErrorEffect("error", {
-    isError: response.data.isError,
-    message: response.data.message,
+    isError: response?.data?.isError,
+    message: response?.data?.message,
   });
 
   return (

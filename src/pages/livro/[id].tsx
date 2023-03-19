@@ -62,7 +62,7 @@ export default function Book({ pageProps: { response }}: any) {
               },
               {
                 label: "Categoria",
-                value: informationBook?.categories.join(", "),
+                value: informationBook?.categories?.join(", "),
               },
               {
                 label: "Idioma",

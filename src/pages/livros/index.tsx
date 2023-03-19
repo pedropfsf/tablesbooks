@@ -14,7 +14,7 @@ import useSearchBooks from "@/features/searchBooks/useSearchBooks";
 import useRenderItemsBook from "@/hooks/useRenderItemsBook";
 import useMessageErrorEffect from "@/hooks/useMessageErrorEffect";
 
-export default function Books({ pageProps: { response }}: any) {
+export default function BooksRandom({ pageProps: { response }}: any) {
   const { theme } = useTheme();
   const items = useRenderItemsBook(response.data);
   const { setCurrentIdSaved } = useSearchBooks();
