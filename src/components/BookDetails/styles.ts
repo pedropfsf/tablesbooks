@@ -15,5 +15,6 @@ export const Text = styled.span<ThemeTyperComponent>`
 `;
 
 export const Lines = styled.div<ThemeTyperComponent>`
+  display: flex;
   border: ${Theme.applyTheme()} dashed 2px;
 `;
