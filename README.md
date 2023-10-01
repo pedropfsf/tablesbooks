@@ -12,8 +12,8 @@
 <p align="center">Plataforma de busca de livros</p>
 
 ## Sobre
-Objetivo desse sistema é fazer busca de livros de maneira dinâmica e encontrar informações relevantes a elas, o sistema ainda linka o livro para ler
-no Google Livros e amazon, para acessar clique nesse link abaixo
+Objetivo desse sistema é fazer busca de livros de maneira dinâmica e encontrar informações relevantes a elas, o sistema ainda adicionar um link para visualizar tanto
+no Google Livros e também na amazon, para acessar clique nesse link abaixo
 
 - [tablebooks](https://tablesbooks.vercel.app/)
 
