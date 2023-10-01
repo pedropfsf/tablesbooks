@@ -5,7 +5,7 @@ import Theme, { ThemeTyperComponent } from "@/utils/Theme";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 `;
 
 export const Text = styled.span<ThemeTyperComponent>`
@@ -17,4 +17,5 @@ export const Text = styled.span<ThemeTyperComponent>`
 export const Lines = styled.div<ThemeTyperComponent>`
   display: flex;
   border: ${Theme.applyTheme()} dashed 2px;
+  margin-bottom: 4px;
 `;

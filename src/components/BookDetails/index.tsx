@@ -5,11 +5,7 @@ import { Amazon } from "@styled-icons/boxicons-logos/Amazon";
 
 import Box from "@/elements/Box";
 
-import { 
-  Container, 
-  Text,
-  Lines
-} from "./styles";
+import { Container, Text, Lines } from "./styles";
 
 import BookImage from "../BookImage";
 import IconCustomized from "../IconCustomized";
@@ -21,24 +17,20 @@ type BookDetailsProps = {
   publishingCompany: string;
   theme?: "light" | "dark";
   canonicalVolumeLink?: string;
-}
+};
 
-function BookDetails({ 
+function BookDetails({
   title,
-  imageSrc, 
-  authors, 
+  imageSrc,
+  authors,
   publishingCompany,
   theme,
-  canonicalVolumeLink
+  canonicalVolumeLink,
 }: BookDetailsProps) {
   return (
     <Container>
       <Lines theme={theme}>
-        <BookImage
-          theme={theme}
-          imageSrc={imageSrc}
-          title={title}
-        />
+        <BookImage theme={theme} imageSrc={imageSrc} title={title} />
       </Lines>
       <Text theme={theme}>
         <strong>Autores:</strong> {authors.join(", ")}
@@ -46,9 +38,7 @@ function BookDetails({
       <Text theme={theme}>
         <strong>Editora:</strong> {publishingCompany}
       </Text>
-      <Box
-        justifyContent="flex-start"
-      >
+      <Box justifyContent="flex-start">
         <IconCustomized
           Icon={BookLink}
           theme={theme}
@@ -63,7 +53,7 @@ function BookDetails({
         />
       </Box>
     </Container>
-  )
-};
+  );
+}
 
 export default memo(BookDetails);
