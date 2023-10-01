@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import Head from "next/head";
 
 import { ContainerPageDefault } from "@/elements/ContainerPageDefault";
@@ -13,10 +12,10 @@ import ContainerDetailsBook from "@/elements/ContainerDetailsBook";
 import TitleDetailsBook from "@/elements/TitleDetailsBook";
 import Box from "@/elements/Box";
 
-export default function Book({ pageProps: { response }}: any) {
+export default function Book({ pageProps: { response } }: any) {
   const { theme } = useTheme();
-  const data = useMemo(() => response?.data, [response]);
-  const informationBook = useMemo(() => response?.data?.volumeInfo, [response]);
+  const data = response?.data;
+  const informationBook = response?.data?.volumeInfo;
 
   const matches = useMediaQuerie("390px");
 
@@ -39,7 +38,7 @@ export default function Book({ pageProps: { response }}: any) {
           imageSrc={informationBook?.imageLinks?.thumbnail}
           canonicalVolumeLink={informationBook?.canonicalVolumeLink}
         />
-        <Box 
+        <Box
           flexDirection="column"
           justifyContent="flex-start"
           alignItems="start"
@@ -54,7 +53,9 @@ export default function Book({ pageProps: { response }}: any) {
             items={[
               {
                 label: "Descrição",
-                value: ReplaceString.removeTags(informationBook?.description ?? ""),
+                value: ReplaceString.removeTags(
+                  informationBook?.description ?? ""
+                ),
               },
               {
                 label: "Data de publicação",
@@ -73,16 +74,16 @@ export default function Book({ pageProps: { response }}: any) {
         </Box>
       </ContainerDetailsBook>
     </ContainerPageDefault>
-  )
-};
+  );
+}
 
 export async function getStaticPaths(context: any) {
   const id = context.params?.id;
-  
+
   return {
-    paths: id ? [ { params: { id } } ] : [],
+    paths: id ? [{ params: { id } }] : [],
     fallback: true,
-  }
+  };
 }
 
 export async function getStaticProps(context: any) {
@@ -91,6 +92,6 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       response,
-    }
-  }
+    },
+  };
 }

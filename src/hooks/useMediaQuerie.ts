@@ -1,30 +1,27 @@
-import { useMemo, useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 type Callback = () => void;
 type Events = {
   onMatchesTrue?: Callback;
   onMatchesFalse?: Callback;
-}
+};
 
 export default function useMediaQuerie(
-  value: string, 
+  value: string,
   { onMatchesTrue, onMatchesFalse }: Events = {}
 ) {
-  const [ valueSaveMatches, setValueSaveMatches ] = useState(false);
-  
-  
-  const mediaQuerie = useMemo(() => {
-    if (typeof window !== 'undefined') {
+  const [valueSaveMatches, setValueSaveMatches] = useState(false);
+
+  function getMediaQuerie() {
+    if (typeof window !== "undefined") {
       return matchMedia(`(max-width: ${value})`);
     }
-    
     return null;
-  }, [value]);
-  
+  }
+
   useEffect(() => {
     const handleMediaQuerie = ({ matches }: any) => {
       setValueSaveMatches(matches);
-
       if (matches) {
         if (onMatchesTrue) {
           onMatchesTrue();
@@ -35,15 +32,13 @@ export default function useMediaQuerie(
         }
       }
     };
-
+    const mediaQuerie = getMediaQuerie();
     if (mediaQuerie === null) {
       return;
     }
-  
     mediaQuerie.addEventListener("change", handleMediaQuerie);
     handleMediaQuerie(mediaQuerie);
-  }, []);
+  }, [getMediaQuerie]);
 
-  
   return valueSaveMatches;
-} 
+}

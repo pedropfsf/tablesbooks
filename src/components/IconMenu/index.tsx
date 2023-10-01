@@ -12,27 +12,28 @@ type IconMenuProps = StyledIconProps & {
   isVisible?: boolean;
 };
 
-export default function IconMenu({ 
-  Icon, 
-  nameRoute, 
-  theme, 
+export default function IconMenu({
+  Icon,
+  nameRoute,
+  theme,
   isVisible = true,
-  ...props 
+  ...props
 }: IconMenuProps) {
   const router = useRouter();
-  const path = useMemo(() => router.asPath.split("/")[1], [router]);
 
-  const setTheme = useCallback(() => {
-    if (path === nameRoute) {
+  function getCurrentPath() {
+    return router.asPath.split("/")[1];
+  }
+
+  function setTheme() {
+    if (getCurrentPath() === nameRoute) {
       return colors.red;
-    } else {
-      return theme === "light" ? colors.black : colors.white;
     }
-  }, [
-    path, 
-    nameRoute, 
-    theme, 
-  ]);
+    if (theme === "light") {
+      return colors.black;
+    }
+    return colors.white;
+  }
 
   if (!isVisible) {
     return <></>;
@@ -40,10 +41,10 @@ export default function IconMenu({
 
   return (
     <Icon
-      style={{ cursor: "pointer "}}
+      style={{ cursor: "pointer " }}
       color={setTheme()}
       size={32}
       {...props}
     />
-  )
+  );
 }
